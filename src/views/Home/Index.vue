@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Order, OrderApiClient } from "@/api";
-import BaseCard from "@/components/main/BaseCard.vue";
+import BaseCard from "@/components/ui/BaseCard.vue";
 
 export default defineComponent({
   name: "HomePage",

@@ -5,15 +5,33 @@
 </template>
 
 <script lang="ts">
-import DefaultLayout from "@/layout/DefaultLayout.vue";
-import { defineComponent } from "vue";
+import DefaultLayout from "@/components/layouts/DefaultLayout.vue";
+import { defineComponent, onMounted, onBeforeUnmount } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   components: {
     DefaultLayout,
   },
   setup() {
-    return {};
+    const store = useStore();
+
+    onMounted(() => {
+      window.addEventListener("online", () =>
+        store.dispatch("UserState/checkUserState", true)
+      );
+      window.addEventListener("offline", () =>
+        store.dispatch("UserState/checkUserState", false)
+      );
+    });
+    onBeforeUnmount(() => {
+      window.removeEventListener("online", () =>
+        store.dispatch("UserState/checkUserState", true)
+      );
+      window.removeEventListener("offline", () =>
+        store.dispatch("UserState/checkUserState", true)
+      );
+    });
   },
 });
 </script>
