@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "017d536b-2a2d-490a-b952-cb27ce9988c3",
+		"name": "Picking App API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get access token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json(); ",
+							"",
+							"pm.collectionVariables.set(\"picking-app-token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "XDEBUG_SESSION=XDEBUG_ECLIPSE",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin@spryker.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "change123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "user_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/backend/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"backend",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{picking-app-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "XDEBUG_SESSION=XDEBUG_ECLIPSE",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url}}/backend/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"backend",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{picking-app-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "XDEBUG_SESSION=XDEBUG_ECLIPSE",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url}}/backend/orders",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"backend",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "instacart_callback_access_token",
+			"value": ""
+		},
+		{
+			"key": "picking-app-token",
+			"value": ""
+		}
+	]
+}

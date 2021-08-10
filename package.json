@@ -7,7 +7,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "mockserver": "npm-run-all start:mockserver start:mockserverclient",
+    "start:mockserver": "cd ./src/mockserver && node server",
+    "start:mockserverclient": "cd ./src/mockserver && node client"
   },
   "dependencies": {
     "commitizen": "^4.2.4",
@@ -38,6 +41,8 @@
     "eslint-plugin-vue": "^7.0.0",
     "git-cz": "^4.7.6",
     "lint-staged": "^9.5.0",
+    "mockserver-client": "^5.11.2",
+    "mockserver-node": "^5.11.2",
     "prettier": "^2.2.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
