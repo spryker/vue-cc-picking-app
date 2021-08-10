@@ -1,19 +1,28 @@
 <template>
-  <default-layout>
+  <component :is="layout">
     <router-view />
-  </default-layout>
+  </component>
 </template>
 
 <script lang="ts">
 import DefaultLayout from "@/components/layouts/DefaultLayout.vue";
-import { defineComponent, onMounted, onBeforeUnmount } from "vue";
+import LoginLayout from "@/components/layouts/LoginLayout.vue";
+import {
+  defineComponent,
+  onMounted,
+  onBeforeUnmount,
+  markRaw,
+  watch,
+} from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
-  components: {
-    DefaultLayout,
-  },
   setup() {
+    const route = useRoute();
+    const layoutName = route.name === "login" ? LoginLayout : DefaultLayout;
+    const layout = markRaw(layoutName);
+
     const store = useStore();
 
     onMounted(() => {
@@ -32,11 +41,23 @@ export default defineComponent({
         store.dispatch("UserState/checkUserState", true)
       );
     });
+
+    watch(
+      () => route.name,
+      () => {
+        layout.value = route.name === "login" ? LoginLayout : DefaultLayout;
+      },
+      { immediate: true }
+    );
+
+    return { layout };
   },
 });
 </script>
 
 <style lang="scss">
+@import "./assets/reset";
+@import "./assets/common";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
