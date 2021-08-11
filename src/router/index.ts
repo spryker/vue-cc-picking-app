@@ -10,6 +10,9 @@ const routes: Array<RouteRecordRaw> = [
     path: "/login",
     name: "login",
     component: () => import("@/views/Login/Index.vue"),
+    meta: {
+      layout: "LoginLayout",
+    },
   },
 ];
 

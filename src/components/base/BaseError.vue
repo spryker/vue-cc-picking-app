@@ -12,7 +12,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent, toRefs } from "vue";
+
+export default defineComponent({
   name: "BaseError",
   props: {
     errorMessage: {
@@ -20,9 +22,12 @@ export default {
       default: "",
     },
   },
-};
+  setup: function (props) {
+    return props;
+  },
+});
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../assets/variables";
 .base-error-message {
   color: $error-color;

@@ -13,8 +13,8 @@
         :type="type"
         :value="modelValue"
         @input="updateInput"
-        @focusin="onFocus"
-        @focusout="outFocus"
+        @focusIn="onFocus"
+        @focusOut="outFocus"
         class="base-input__input"
         :class="{
           'with-text': !!modelValue,
@@ -42,8 +42,9 @@
 
 <script>
 import BaseError from "@/components/base/BaseError.vue";
+import { defineComponent, ref, computed } from "vue";
 
-export default {
+export default defineComponent({
   name: "BaseInput",
   props: {
     id: {
@@ -91,15 +92,28 @@ export default {
   components: {
     BaseError,
   },
-  data() {
-    return {
-      highlighted: false,
+  setup(props) {
+    const highlighted = ref(false);
+    const hasValue = computed(() => Boolean(props.modelValue?.length));
+
+    const onBlur = () => {
+      highlighted.value = false;
     };
-  },
-  computed: {
-    hasValue() {
-      return !!this.modelValue?.length;
-    },
+    const onFocus = () => {
+      highlighted.value = true;
+    };
+    const outFocus = () => {
+      highlighted.value = false;
+    };
+
+    return {
+      props,
+      highlighted,
+      hasValue,
+      onBlur,
+      onFocus,
+      outFocus,
+    };
   },
   methods: {
     updateInput(event) {
@@ -108,19 +122,10 @@ export default {
     clearInput() {
       this.$emit("update:modelValue", null);
     },
-    onBlur() {
-      this.highlighted = false;
-    },
-    onFocus() {
-      this.highlighted = true;
-    },
-    outFocus() {
-      this.highlighted = false;
-    },
   },
-};
+});
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @use "sass:math";
 @import "../../assets/variables";
 .base-input {
@@ -146,10 +151,13 @@ export default {
 
     &:focus,
     &.with-text {
-      margin-top: -1px;
       color: $input-focus-color;
-      border: $input-focus-border-width solid $input-focus-border-color;
       outline: 0;
+    }
+
+    &:focus {
+      margin-top: -1px;
+      border: $input-focus-border-width solid $input-focus-border-color;
     }
   }
   &__label {
@@ -185,6 +193,11 @@ export default {
       -webkit-transform: translateY(-$input-padding-y)
         translateY($translate-height);
       transform: translateY(-$input-padding-y) translateY($translate-height);
+    }
+  }
+
+  &.focused-input {
+    .base-input__label {
       color: $form-label-focus-border-color;
     }
   }

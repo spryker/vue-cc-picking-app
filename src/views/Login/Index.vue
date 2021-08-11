@@ -8,19 +8,22 @@
     <BaseInput
       id="operatorId"
       label="Operator ID"
-      v-model="operatorId"
+      v-model="user.username"
       class="mb-3"
       :valid="false"
     />
     <BaseInput
       id="password"
       label="Password"
-      v-model="password"
+      v-model="user.password"
       type="password"
       class="mb-3"
     />
 
-    <BaseError v-if="operatorId || password" :error-message="errorMessage" />
+    <BaseError
+      v-if="user.username || user.password"
+      :error-message="errorMessage"
+    />
 
     <BaseButton @click="login"> Log In </BaseButton>
   </div>
@@ -31,6 +34,8 @@ import { defineComponent } from "vue";
 import BaseInput from "@/components/base/BaseInput.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
 import BaseError from "@/components/base/BaseError.vue";
+import { ref, watch } from "vue";
+import UseLogin from "@/composables/useLogin";
 
 export default defineComponent({
   name: "LoginPage",
@@ -39,18 +44,15 @@ export default defineComponent({
     BaseButton,
     BaseError,
   },
-  data() {
-    return {
-      operatorId: null,
-      password: null,
-      errorMessage:
-        "Oops, something went wrong. The Username or the Password you entered is invalid.",
-    };
-  },
-  methods: {
-    login() {
-      this.$router.push("/");
-    },
+  setup() {
+    const user = ref({
+      username: "",
+      password: "",
+    });
+
+    const { resultUser, errorMessage, login } = UseLogin(user);
+
+    return { user, resultUser, errorMessage, login };
   },
 });
 </script>

@@ -1,29 +1,15 @@
 <template>
-  <component :is="layout">
+  <AppLayout>
     <router-view />
-  </component>
+  </AppLayout>
 </template>
 
 <script lang="ts">
-import DefaultLayout from "@/components/layouts/DefaultLayout.vue";
-import LoginLayout from "@/components/layouts/LoginLayout.vue";
-import {
-  defineComponent,
-  onMounted,
-  onBeforeUnmount,
-  markRaw,
-  watch,
-} from "vue";
+import { defineComponent, onMounted, onBeforeUnmount } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
-import { ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const route = useRoute();
-    const layoutName = route.name === "login" ? LoginLayout : DefaultLayout;
-    const layout = ref(layoutName);
-
     const store = useStore();
 
     onMounted(() => {
@@ -42,16 +28,6 @@ export default defineComponent({
         store.dispatch("UserState/checkUserState", true)
       );
     });
-
-    watch(
-      () => route.name,
-      () => {
-        layout.value = route.name === "login" ? LoginLayout : DefaultLayout;
-      },
-      { immediate: true }
-    );
-
-    return { layout };
   },
 });
 </script>
