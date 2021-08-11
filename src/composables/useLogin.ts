@@ -24,6 +24,6 @@ export default function useLogin(user: { value: User }) {
     resultUser: resultUser.value,
     errorMessage: errorMessage.value,
     login,
-    userLogin: userLogin.value,
+    userLogin,
   };
 }

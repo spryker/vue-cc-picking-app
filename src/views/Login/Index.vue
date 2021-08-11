@@ -36,6 +36,7 @@ import BaseButton from "@/components/base/BaseButton.vue";
 import BaseError from "@/components/base/BaseError.vue";
 import { ref, watch } from "vue";
 import UseLogin from "@/composables/useLogin";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "LoginPage",
@@ -44,13 +45,20 @@ export default defineComponent({
     BaseButton,
     BaseError,
   },
-  setup() {
+  setup: function () {
     const user = ref({
       username: "",
       password: "",
     });
+    const router = useRouter();
 
-    const { resultUser, errorMessage, login } = UseLogin(user);
+    const { resultUser, errorMessage, login, userLogin } = UseLogin(user);
+
+    watch(userLogin, (newValue) => {
+      if (newValue) {
+        router.push("/");
+      }
+    });
 
     return { user, resultUser, errorMessage, login };
   },
