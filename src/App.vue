@@ -1,18 +1,14 @@
 <template>
-  <default-layout>
+  <AppLayout>
     <router-view />
-  </default-layout>
+  </AppLayout>
 </template>
 
 <script lang="ts">
-import DefaultLayout from "@/components/layouts/DefaultLayout.vue";
 import { defineComponent, onMounted, onBeforeUnmount } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
-  components: {
-    DefaultLayout,
-  },
   setup() {
     const store = useStore();
 
@@ -37,6 +33,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "./assets/reset";
+@import "./assets/common";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
