@@ -25,7 +25,9 @@
       :error-message="errorMessage"
     />
 
-    <BaseButton @click="login"> Log In </BaseButton>
+    <BaseButton @click="login" :disabled="!user.username || !user.password">
+      Log In
+    </BaseButton>
   </div>
 </template>
 
