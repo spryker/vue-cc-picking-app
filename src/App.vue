@@ -16,12 +16,13 @@ import {
 } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
+import { ref } from "vue";
 
 export default defineComponent({
   setup() {
     const route = useRoute();
     const layoutName = route.name === "login" ? LoginLayout : DefaultLayout;
-    const layout = markRaw(layoutName);
+    const layout = ref(layoutName);
 
     const store = useStore();
 
