@@ -2,7 +2,7 @@
   <div
     class="base-input"
     :class="{
-      'has-text': !!modelValue,
+      'has-text': Boolean(modelValue),
       'focused-input': highlighted,
       invalid: !valid,
     }"
@@ -17,7 +17,7 @@
         @focusOut="outFocus"
         class="base-input__input"
         :class="{
-          'with-text': !!modelValue,
+          'with-text': Boolean(modelValue),
         }"
       />
       <label v-if="label" :for="id" class="base-input__label">
