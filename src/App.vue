@@ -5,33 +5,14 @@
 </template>
 
 <script lang="ts">
-import DefaultLayout from "@/components/layouts/DefaultLayout.vue";
-import { defineComponent, onMounted, onBeforeUnmount } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
+import { RouterView } from "vue-router";
+import DefaultLayout from "@/features/ui/layouts/DefaultLayout.vue";
 
 export default defineComponent({
   components: {
+    RouterView,
     DefaultLayout,
-  },
-  setup() {
-    const store = useStore();
-
-    onMounted(() => {
-      window.addEventListener("online", () =>
-        store.dispatch("UserState/checkUserState", true)
-      );
-      window.addEventListener("offline", () =>
-        store.dispatch("UserState/checkUserState", false)
-      );
-    });
-    onBeforeUnmount(() => {
-      window.removeEventListener("online", () =>
-        store.dispatch("UserState/checkUserState", true)
-      );
-      window.removeEventListener("offline", () =>
-        store.dispatch("UserState/checkUserState", true)
-      );
-    });
   },
 });
 </script>
