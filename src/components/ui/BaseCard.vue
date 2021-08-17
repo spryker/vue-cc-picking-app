@@ -12,7 +12,7 @@
     <hr />
     <BaseProductBox :products="card.products" />
     <div>
-      <router-link :to="`/edit/${card.id}`">Select</router-link>
+      <BaseButton :btnOutline="true"> Select </BaseButton>
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ import { defineComponent, PropType } from "vue";
 import BaseProductBox from "@/components/ui/BaseProductBox.vue";
 import moment from "moment";
 import { Order } from "@/api";
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default defineComponent({
   props: {
@@ -30,6 +31,7 @@ export default defineComponent({
     },
   },
   components: {
+    BaseButton,
     BaseProductBox,
   },
   methods: {
