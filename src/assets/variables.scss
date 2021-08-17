@@ -1,0 +1,49 @@
+/**
+ * Animation variables
+ */
+$transition-default-timing: cubic-bezier(.4, 0, .2, 1);
+$transition-default-duration: .4s;
+$transition-default: $transition-default-duration $transition-default-timing;
+
+$transition-stand-timing: cubic-bezier(.25, .8, .25, 1);
+$transition-stand-duration: .4s;
+$transition-stand: $transition-stand-duration $transition-stand-timing;
+
+
+/**
+ * Base theme color
+ */
+$default-text-color: #101316;
+
+$base-header-color: #0D3A93;
+$base-header-size: 21px;
+
+$input-padding-y: 20px;
+$input-padding-x: 24px;
+$input-font-size: 14px;
+$input-font-weight: normal;
+$input-line-height: 1.5;
+$input-color: #71777E;
+$input-bg: transparent;
+$input-border-width: 1px;
+$input-border-color: #71777E;
+$input-border-radius: 8px;
+
+$input-focus-color: #101316;
+$input-focus-border-color: #0D3A93;
+$input-focus-border-width: 2px;
+
+$form-label-margin-bottom: 0;
+$form-label-font-size: $input-font-size;
+$form-label-font-weight: normal;
+$form-label-color: $input-color;
+$form-label-focus-border-color: #0D3A93;
+
+$error-color: #E00016;
+$primary-btn-bg: #0D3A93;
+$primary-btn-color: #FFF;
+$primary-btn-radius: 8px;
+$primary-btn-height: 48px;
+
+$search-bg: rgba(212, 227, 255, 0.24);
+$search-border-radius: 20px;
