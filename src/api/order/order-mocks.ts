@@ -10,6 +10,28 @@ export const mockOrders: Order[] = [
     number_of_items: 5,
     grand_total_formatted: "$25.41",
     status: OrderStatus.ReadyForPicking,
+    products: [
+      {
+        productName: "string",
+        productType: "Frozen",
+        count: 10,
+      },
+      {
+        productName: "string",
+        productType: "Ambient",
+        count: 5,
+      },
+      {
+        productName: "string",
+        productType: "Chilled",
+        count: 8,
+      },
+      {
+        productName: "string",
+        productType: "Fresh",
+        count: 5,
+      },
+    ],
   },
   {
     id: "DE_14242522",
@@ -19,5 +41,17 @@ export const mockOrders: Order[] = [
     number_of_items: 2,
     grand_total_formatted: "$16.30",
     status: OrderStatus.ReadyForDelivery,
+    products: [
+      {
+        productName: "string",
+        productType: "Frozen",
+        count: 8,
+      },
+      {
+        productName: "string",
+        productType: "Ambient",
+        count: 5,
+      },
+    ],
   },
 ];

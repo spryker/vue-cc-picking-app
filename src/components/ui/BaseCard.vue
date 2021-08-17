@@ -10,7 +10,7 @@
       <span>{{ card.number_of_items }} Items</span>
     </div>
     <hr />
-    <BaseProductBox />
+    <BaseProductBox :products="card.products" />
     <div>
       <router-link :to="`/edit/${card.id}`">Select</router-link>
     </div>
@@ -18,13 +18,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import BaseProductBox from "@/components/ui/BaseProductBox.vue";
 import moment from "moment";
+import { Order } from "@/api";
 
 export default defineComponent({
   props: {
-    card: Object,
+    card: {
+      type: Object as PropType<Order>,
+    },
   },
   components: {
     BaseProductBox,

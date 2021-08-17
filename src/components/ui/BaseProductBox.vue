@@ -1,22 +1,22 @@
 <template>
   <div class="product-box">
     <div class="product-box__item">
-      <BaseProductItem name="Fresh" count="10">
+      <BaseProductItem v-if="fresh" name="Fresh" :count="fresh?.count">
         <img src="../../assets/icons/fresh.svg" alt="" />
       </BaseProductItem>
     </div>
     <div class="product-box__item">
-      <BaseProductItem name="Chilled" count="10">
+      <BaseProductItem v-if="chilled" name="Chilled" :count="chilled?.count">
         <img src="../../assets/icons/meat.svg" alt="" />
       </BaseProductItem>
     </div>
     <div class="product-box__item">
-      <BaseProductItem name="Frozen" count="10">
+      <BaseProductItem v-if="frozen" name="Frozen" :count="frozen?.count">
         <img src="../../assets/icons/frozen.svg" alt="" />
       </BaseProductItem>
     </div>
     <div class="product-box__item">
-      <BaseProductItem name="Ambient" count="10">
+      <BaseProductItem v-if="ambient" name="Ambient" :count="ambient?.count">
         <img src="../../assets/icons/core.svg" alt="" />
       </BaseProductItem>
     </div>
@@ -24,13 +24,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType, reactive } from "vue";
 import BaseProductItem from "@/components/ui/BaseProductItem.vue";
+import useProductList from "@/composables/useProductList";
+import { OrderProduct } from "@/api";
 
 export default defineComponent({
   components: { BaseProductItem },
   props: {
-    card: Object,
+    products: {
+      type: Array as PropType<OrderProduct[]>,
+    },
+  },
+  setup: function (props) {
+    const { fresh, chilled, frozen, ambient } = useProductList(props.products);
+
+    return {
+      fresh,
+      chilled,
+      frozen,
+      ambient,
+    };
   },
 });
 </script>

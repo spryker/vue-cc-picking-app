@@ -10,11 +10,18 @@ export interface Order {
   id: string;
   grand_total_formatted: string;
   status: OrderStatus;
+  products: OrderProduct[];
 }
 
 export interface OrderStatusUpdate {
   orderId: string;
   status: OrderStatus;
+}
+
+export interface OrderProduct {
+  productName: string;
+  productType: string;
+  count: number;
 }
 
 export interface OrderError {
