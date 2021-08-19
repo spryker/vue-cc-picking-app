@@ -1,12 +1,12 @@
 <template>
   <div class="card">
     <div class="card__title mb-2">
-      <div class="card__time">{{ dateToTime(card.created_at.toString()) }}</div>
+      <div class="card__time">{{ formattedTime }}</div>
       <div class="card__id">UF - FF - 1000016</div>
     </div>
     <hr />
     <div class="card__total">
-      <img class="mr-1" src="../../assets/icons/cart.svg" alt="" />
+      <img class="mr-1" src="@/assets/icons/cart.svg" alt="" />
       <span>{{ card.number_of_items }} Items</span>
     </div>
     <hr />
@@ -18,26 +18,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 import BaseProductBox from "@/components/ui/BaseProductBox.vue";
-import moment from "moment";
 import { Order } from "@/api";
 import BaseButton from "@/components/ui/BaseButton.vue";
+import { formatDate } from "@/helpers/DateFormatter";
 
 export default defineComponent({
   props: {
     card: {
       type: Object as PropType<Order>,
+      default: () => {
+        return {};
+      },
     },
   },
   components: {
     BaseButton,
     BaseProductBox,
   },
-  methods: {
-    dateToTime(value: string) {
-      return moment(value).format("hh:mm");
-    },
+  setup(props) {
+    const formattedTime = computed(() => {
+      return formatDate(new Date(props.card.created_at));
+    });
+    return {
+      formattedTime,
+    };
   },
 });
 </script>

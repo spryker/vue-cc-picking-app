@@ -34,6 +34,9 @@ export default defineComponent({
   props: {
     products: {
       type: Array as PropType<OrderProduct[]>,
+      default: () => {
+        return [];
+      },
     },
   },
   setup: function (props) {
