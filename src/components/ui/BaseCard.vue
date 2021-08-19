@@ -10,7 +10,7 @@
       <span>{{ card.number_of_items }} Items</span>
     </div>
     <hr />
-    <BaseProductBox :products="card.products" />
+    <BaseProductBox :products="card.products" :disabledItem="disabledItem" />
     <div>
       <BaseButton :btnOutline="true"> Start Picking </BaseButton>
     </div>
@@ -29,6 +29,7 @@ export default defineComponent({
     card: {
       type: Object as PropType<Order>,
     },
+    disabledItem: Array,
   },
   components: {
     BaseButton,

@@ -1,22 +1,38 @@
 <template>
   <div class="product-box">
     <div class="product-box__item">
-      <BaseProductItem v-if="fresh" name="Fresh" :count="fresh.count">
+      <BaseProductItem
+        v-if="fresh && !isDisabledProduct('fresh')"
+        name="Fresh"
+        :count="fresh.count"
+      >
         <img src="../../assets/icons/fresh.svg" alt="" />
       </BaseProductItem>
     </div>
     <div class="product-box__item">
-      <BaseProductItem v-if="chilled" name="Chilled" :count="chilled.count">
+      <BaseProductItem
+        v-if="chilled && !isDisabledProduct('chilled')"
+        name="Chilled"
+        :count="chilled.count"
+      >
         <img src="../../assets/icons/chilled.svg" alt="" />
       </BaseProductItem>
     </div>
     <div class="product-box__item">
-      <BaseProductItem v-if="frozen" name="Frozen" :count="frozen.count">
+      <BaseProductItem
+        v-if="frozen && !isDisabledProduct('frozen')"
+        name="Frozen"
+        :count="frozen.count"
+      >
         <img src="../../assets/icons/frozen.svg" alt="" />
       </BaseProductItem>
     </div>
     <div class="product-box__item">
-      <BaseProductItem v-if="ambient" name="Ambient" :count="ambient.count">
+      <BaseProductItem
+        v-if="ambient && !isDisabledProduct('ambient')"
+        name="Ambient"
+        :count="ambient.count"
+      >
         <img src="../../assets/icons/ambient.svg" alt="" />
       </BaseProductItem>
     </div>
@@ -35,15 +51,24 @@ export default defineComponent({
     products: {
       type: Array as PropType<OrderProduct[]>,
     },
+    disabledItem: Array,
   },
   setup: function (props) {
     const { fresh, chilled, frozen, ambient } = useProductList(props.products);
+
+    const isDisabledProduct = (itemName: string) => {
+      if (props.disabledItem && props.disabledItem.length) {
+        return props.disabledItem.includes(itemName);
+      }
+      return false;
+    };
 
     return {
       fresh,
       chilled,
       frozen,
       ambient,
+      isDisabledProduct,
     };
   },
 });

@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./fonts/stylesheet";
 
 @mixin generate($prefix, $property) {
   // List of sizes to generate for each
@@ -39,4 +40,8 @@ $rules: [
   border: none;
   background: transparent;
   top: 8px;
+}
+
+*{
+  font-family: 'ALDI SUED OT';
 }
