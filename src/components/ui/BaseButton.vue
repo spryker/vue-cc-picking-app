@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { defineComponent, toRefs } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "BaseButton",
@@ -34,16 +34,18 @@ export default defineComponent({
 @import "../../assets/variables";
 .btn {
   border-radius: $primary-btn-radius;
-  height: $primary-btn-height;
-  line-height: $primary-btn-height;
-  padding: 0;
+  line-height: 1.5;
+  padding: 8px 20px;
+  box-sizing: border-box;
   width: 100%;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
   transition: all 0.25s ease-in-out;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   font-weight: 400;
   color: #212529;
   text-align: center;

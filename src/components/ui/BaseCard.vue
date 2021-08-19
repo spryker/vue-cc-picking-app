@@ -12,7 +12,7 @@
     <hr />
     <BaseProductBox :products="card.products" />
     <div>
-      <BaseButton :btnOutline="true"> Select </BaseButton>
+      <BaseButton :btnOutline="true"> Start Picking </BaseButton>
     </div>
   </div>
 </template>

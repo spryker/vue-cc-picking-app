@@ -7,7 +7,7 @@
     </div>
     <div class="product-box__item">
       <BaseProductItem v-if="chilled" name="Chilled" :count="chilled?.count">
-        <img src="../../assets/icons/meat.svg" alt="" />
+        <img src="../../assets/icons/chilled.svg" alt="" />
       </BaseProductItem>
     </div>
     <div class="product-box__item">
@@ -17,14 +17,14 @@
     </div>
     <div class="product-box__item">
       <BaseProductItem v-if="ambient" name="Ambient" :count="ambient?.count">
-        <img src="../../assets/icons/core.svg" alt="" />
+        <img src="../../assets/icons/ambient.svg" alt="" />
       </BaseProductItem>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive } from "vue";
+import { defineComponent, PropType } from "vue";
 import BaseProductItem from "@/components/ui/BaseProductItem.vue";
 import useProductList from "@/composables/useProductList";
 import { OrderProduct } from "@/api";
