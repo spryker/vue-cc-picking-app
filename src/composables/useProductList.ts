@@ -2,19 +2,19 @@ import { filter } from "lodash";
 import { OrderProduct } from "@/api";
 
 export default function useProductList(products: OrderProduct[] | undefined) {
-  const fresh = filter(products, (item) => {
+  const fresh = filter(products, (item: OrderProduct) => {
     return item.productType.toLowerCase() === "fresh";
   })[0];
 
-  const chilled = filter(products, (item) => {
+  const chilled = filter(products, (item: OrderProduct) => {
     return item.productType.toLowerCase() === "chilled";
   })[0];
 
-  const frozen = filter(products, (item) => {
+  const frozen = filter(products, (item: OrderProduct) => {
     return item.productType.toLowerCase() === "frozen";
   })[0];
 
-  const ambient = filter(products, (item) => {
+  const ambient = filter(products, (item: OrderProduct) => {
     return item.productType.toLowerCase() === "ambient";
   })[0];
 

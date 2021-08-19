@@ -2,7 +2,7 @@
   <div class="base-error-message mb-3">
     <transition name="sf-fade">
       <slot v-if="errorMessage" name="error-message">
-        <div class="base-error-message__wrapp">
+        <div class="base-error-message__wrap">
           <img src="../../assets/alert.svg" alt="" class="mr-2" />
           {{ errorMessage }}
         </div>
@@ -35,7 +35,7 @@ export default defineComponent({
   font-size: 14px;
   line-height: 20px;
 
-  &__wrapp {
+  &__wrap {
     display: flex;
     flex-direction: row;
   }

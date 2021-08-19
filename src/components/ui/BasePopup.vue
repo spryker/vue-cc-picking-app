@@ -7,7 +7,7 @@
     }"
     class="popup"
   >
-    <div class="popup__wrapp">
+    <div class="popup__wrap">
       <div class="popup__header">
         <slot name="header"></slot>
         <button tabindex="-1" class="close-btn" @click="$emit('close')">
@@ -61,9 +61,10 @@ export default defineComponent({
   background: rgba(214, 216, 218, 0.05);
   backdrop-filter: blur(20px);
   text-align: left;
+  z-index: 9;
 
   &.bottom-position {
-    .popup__wrapp {
+    .popup__wrap {
       top: auto;
       bottom: 0;
       border-bottom-left-radius: 0;
@@ -72,21 +73,22 @@ export default defineComponent({
   }
 
   &.full-width {
-    .popup__wrapp {
+    .popup__wrap {
       left: 0;
       right: 0;
     }
   }
 
-  &__wrapp {
+  &__wrap {
     background: #ffffff;
-    box-shadow: 0px 3px 16px rgba(13, 58, 147, 0.12);
+    box-shadow: 0 3px 16px rgba(13, 58, 147, 0.12);
     border-radius: 18px;
     padding: 18px;
     position: absolute;
     right: 15px;
     top: 15px;
     box-sizing: border-box;
+    min-width: 70%;
   }
 
   .close-btn {

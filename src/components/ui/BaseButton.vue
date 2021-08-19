@@ -3,6 +3,7 @@
     :class="{
       'primary-btn-outline': btnOutline,
       'primary-btn': !btnOutline,
+      'primary-btn__active': active,
     }"
     :disabled="disabled"
   >
@@ -21,6 +22,10 @@ export default defineComponent({
       default: false,
     },
     btnOutline: {
+      type: Boolean,
+      default: false,
+    },
+    active: {
       type: Boolean,
       default: false,
     },
@@ -98,6 +103,11 @@ export default defineComponent({
   &:active {
     background: $primary-btn-bg;
     transform: scale(0.98);
+    color: #fff;
+  }
+
+  &.primary-btn__active {
+    background: $primary-btn-bg;
     color: #fff;
   }
 }

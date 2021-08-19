@@ -2,11 +2,16 @@
   <div class="filter">
     <BaseButton
       class="filter__button"
+      :class="{
+        'primary-btn__active': Boolean(productTypesCount),
+      }"
       :btnOutline="true"
+      :active="Boolean(productTypesCount)"
       @click="toggleShowFilter"
     >
       <img class="mr-1" src="../../assets/icons/filter.svg" alt="" />
       Filter
+      <span v-if="Boolean(productTypesCount)"> ({{ productTypesCount }}) </span>
     </BaseButton>
     <BasePopup
       :visible="visibleFilter"
@@ -36,9 +41,7 @@
       <div class="filter__sort">
         <BaseRadioGroup
           :options="sortedlist"
-          label="test"
           id="sortedList"
-          v-model:selected="sortBy"
           @selectedChange="updateInput"
         />
       </div>
@@ -47,7 +50,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref, reactive, computed } from "vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
 import BasePopup from "@/components/ui/BasePopup";
 import BaseCheckbox from "@/components/ui/BaseCheckbox";
@@ -76,6 +79,12 @@ export default defineComponent({
   setup: function (props) {
     const visibleFilter = ref(false);
     const productTypesList = reactive(productTypes);
+    const productTypesCount = computed(() => {
+      return productTypesList.filter((product) => {
+        return !product.active;
+      }).length;
+    });
+
     const sortedlist = map(sortTypes, (type, key) => {
       return {
         value: key,
@@ -83,13 +92,12 @@ export default defineComponent({
       };
     });
     const sortBy = ref(sortedlist[0].value);
+    const updateInput = function (select) {
+      sortBy.value = select;
+    };
 
     const toggleShowFilter = () => {
       visibleFilter.value = !visibleFilter.value;
-    };
-
-    const updateInput = function (select) {
-      sortBy.value = select;
     };
 
     return {
@@ -100,6 +108,7 @@ export default defineComponent({
       sortedlist,
       sortBy,
       updateInput,
+      productTypesCount,
     };
   },
 });
@@ -117,8 +126,14 @@ export default defineComponent({
     box-shadow: 1.77778px 1.77778px 8.88889px rgba(0, 0, 0, 0.16);
     border-radius: 18px;
 
+    span {
+      display: inline-block;
+      margin: 0 3px;
+    }
+
     &:hover,
-    &:active {
+    &:active,
+    &.primary-btn__active {
       & > img {
         filter: brightness(0) invert(1);
       }
