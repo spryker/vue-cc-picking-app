@@ -29,7 +29,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 25px;
 }
 
 #root-wrapper {
