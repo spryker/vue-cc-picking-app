@@ -1,7 +1,10 @@
 <template>
   <div class="default-layout">
-    <div id="root-wrapper">
-      <router-view />
+    <BaseHeader />
+    <div class="container">
+      <div id="root-wrapper">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -22,10 +25,18 @@ export default defineComponent({
   min-height: 100vh;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
 #root-wrapper {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   margin: 0 0 0;
+  max-width: 600px;
 }
 </style>

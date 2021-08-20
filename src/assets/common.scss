@@ -2,7 +2,7 @@
 
 @mixin generate($prefix, $property) {
   // List of sizes to generate for each
-  $sizes: [0, .25, .5, 1, 1.5, 3];
+  $sizes: [0, 0.25, 0.5, 1, 1.5, 3];
   // Spacing to multiply the sizes by
   $spacing: 1rem;
 
@@ -18,18 +18,14 @@
   }
 }
 
-$rules: [
-  [ml, margin-left],
-  [mt, margin-top],
-  [mb, margin-bottom],
-  [mr, margin-right],
-];
+$rules: [ [ml, margin-left], [mt, margin-top], [mb, margin-bottom], [mr,
+  margin-right], ];
 
 @each $item in $rules {
   @include generate(nth($item, 1), nth($item, 2));
 }
 
-.page-title{
+.page-title {
   color: $base-header-color;
   font-size: $base-header-size;
   text-align: center;
