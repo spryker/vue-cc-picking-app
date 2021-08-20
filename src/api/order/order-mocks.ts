@@ -10,6 +10,8 @@ export const mockOrders: Order[] = [
     number_of_items: 28,
     grand_total_formatted: "$25.41",
     status: OrderStatus.ReadyForPicking,
+    cartNote:
+      "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.",
     products: [
       {
         productName: "string",
@@ -41,6 +43,7 @@ export const mockOrders: Order[] = [
     number_of_items: 13,
     grand_total_formatted: "$16.30",
     status: OrderStatus.ReadyForDelivery,
+    cartNote: "",
     products: [
       {
         productName: "string",
@@ -62,6 +65,7 @@ export const mockOrders: Order[] = [
     number_of_items: 18,
     grand_total_formatted: "$16.30",
     status: OrderStatus.ReadyForDelivery,
+    cartNote: "",
     products: [
       {
         productName: "string",
@@ -83,6 +87,7 @@ export const mockOrders: Order[] = [
     number_of_items: 13,
     grand_total_formatted: "$16.30",
     status: OrderStatus.ReadyForDelivery,
+    cartNote: "",
     products: [
       {
         productName: "string",

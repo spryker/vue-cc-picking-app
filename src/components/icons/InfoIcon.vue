@@ -1,0 +1,31 @@
+<template>
+  <svg
+    :width="width"
+    :height="height"
+    viewBox="0 0 20 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M1 10C1 12.3869 1.94821 14.6761 3.63604 16.364C5.32387 18.0518 7.61305 19 10 19C12.3869 19 14.6761 18.0518 16.364 16.364C18.0518 14.6761 19 12.3869 19 10C19 7.61305 18.0518 5.32387 16.364 3.63604C14.6761 1.94821 12.3869 1 10 1C7.61305 1 5.32387 1.94821 3.63604 3.63604C1.94821 5.32387 1 7.61305 1 10V10Z"
+      stroke="#0D3A93"
+      stroke-width="1.3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M11.1311 5.792C11.1311 5.156 10.6271 4.652 10.0031 4.652C9.37909 4.652 8.86309 5.156 8.86309 5.792C8.86309 6.428 9.37909 6.92 10.0031 6.92C10.6271 6.92 11.1311 6.428 11.1311 5.792ZM10.9991 14V7.664H8.99509V14H10.9991Z"
+      fill="#0D3A93"
+    />
+  </svg>
+</template>
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  props: {
+    width: { type: [String, Number], default: 20 },
+    height: { type: [String, Number], default: 20 },
+  },
+});
+</script>

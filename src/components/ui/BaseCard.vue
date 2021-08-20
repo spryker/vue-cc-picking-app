@@ -5,9 +5,12 @@
       <div class="card__id">UF - FF - 1000016</div>
     </div>
     <hr />
-    <div class="card__total">
-      <img class="mr-1" src="@/assets/icons/cart.svg" alt="" />
-      <span>{{ card.number_of_items }} Items</span>
+    <div class="card__subheader">
+      <div class="card__total">
+        <img class="mr-1" src="@/assets/icons/cart.svg" alt="" />
+        <span>{{ card.number_of_items }} Items</span>
+      </div>
+      <div v-if="card.cartNote" class="d-flex-center"><InfoIcon /></div>
     </div>
     <hr />
     <BaseProductBox :products="card.products" />
@@ -19,10 +22,11 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
-import BaseProductBox from "@/components/ui/BaseProductBox.vue";
 import { Order } from "@/api";
-import BaseButton from "@/components/ui/BaseButton.vue";
 import { formatDate } from "@/helpers/DateFormatter";
+import BaseProductBox from "@/components/ui/BaseProductBox.vue";
+import BaseButton from "@/components/ui/BaseButton.vue";
+import InfoIcon from "@/components/icons/InfoIcon.vue";
 
 export default defineComponent({
   props: {
@@ -36,6 +40,7 @@ export default defineComponent({
   components: {
     BaseButton,
     BaseProductBox,
+    InfoIcon,
   },
   setup(props) {
     const formattedTime = computed(() => {
@@ -71,6 +76,12 @@ export default defineComponent({
     @extend .text-block__padding;
   }
 
+  &__subheader {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+  }
+
   &__time {
     font-size: 21px;
     line-height: 1;
@@ -95,5 +106,9 @@ export default defineComponent({
     align-items: center;
     @extend .text-block__padding;
   }
+}
+.d-flex-center {
+  display: flex;
+  align-items: center;
 }
 </style>
