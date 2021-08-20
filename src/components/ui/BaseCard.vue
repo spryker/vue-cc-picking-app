@@ -19,7 +19,7 @@
     <hr />
     <BaseProductBox :products="card.products" :disabledItem="disabledItem" />
     <div>
-      <BaseButton :btnOutline="true"> Start Picking </BaseButton>
+      <BaseButton btnOutline @click="goNext"> Start Picking </BaseButton>
     </div>
   </div>
 </template>
@@ -31,6 +31,7 @@ import { formatDate } from "@/helpers/DateFormatter";
 import BaseProductBox from "@/components/ui/BaseProductBox.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
 import InfoIcon from "@/components/icons/InfoIcon.vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   props: {
@@ -51,8 +52,14 @@ export default defineComponent({
     const formattedTime = computed(() => {
       return formatDate(new Date(props.card.created_at));
     });
+    const router = useRouter();
+    const goNext = () => {
+      router.push("picking");
+    };
+
     return {
       formattedTime,
+      goNext,
     };
   },
 });

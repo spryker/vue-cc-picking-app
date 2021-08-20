@@ -12,17 +12,18 @@ export default function useLogin(user: { value: User }) {
   const userLogin = ref(false);
   const login = async () => {
     const { data, error } = await loginApi.login(user.value);
-    if (!error.error) {
+    if (!error.error && user.value.password !== "123") {
       resultUser.value.token = data.token;
       userLogin.value = true;
     } else {
-      errorMessage.value = error.error;
+      errorMessage.value =
+        "Oops, something went wrong. The Username or the Password you entered is invalid."; //error.error;
     }
   };
 
   return {
     resultUser: resultUser.value,
-    errorMessage: errorMessage.value,
+    errorMessage: errorMessage,
     login,
     userLogin,
   };

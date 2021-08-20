@@ -53,7 +53,9 @@
           <dt>Employee Name</dt>
           <dd>7821 KOP 39661</dd>
         </dl>
-        <BaseButton class="mt-4" :btn-outline="true"> Log Out </BaseButton>
+        <BaseButton class="mt-4" :btn-outline="true" @click="goToLogin">
+          Log Out
+        </BaseButton>
       </template>
     </BasePopup>
   </div>
@@ -63,6 +65,7 @@
 import { defineComponent, ref, computed } from "vue";
 import BasePopup from "@/components/ui/BasePopup.vue";
 import BaseButton from "@/components/ui/BaseButton";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "BaseSearch",
@@ -104,6 +107,11 @@ export default defineComponent({
       visibleProfile.value = !visibleProfile.value;
     };
 
+    const router = useRouter();
+    const goToLogin = () => {
+      router.push("login");
+    };
+
     return {
       props,
       showSearch,
@@ -111,6 +119,7 @@ export default defineComponent({
       visibleProfile,
       toggleSearch,
       hasValue,
+      goToLogin,
     };
   },
   methods: {
@@ -133,8 +142,6 @@ export default defineComponent({
   top: 8px;
 }
 .base-search {
-  padding: 10px 16px;
-
   &__title {
     background: $search-bg;
     border-radius: $search-border-radius;

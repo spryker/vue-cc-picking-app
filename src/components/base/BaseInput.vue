@@ -156,8 +156,10 @@ export default defineComponent({
     }
 
     &:focus {
-      margin-top: -1px;
-      border: $input-focus-border-width solid $input-focus-border-color;
+      border-color: $input-focus-border-color;
+      -webkit-box-shadow: 0 0 0 1px $input-focus-border-color;
+      -moz-box-shadow: 0 0 0 1px $input-focus-border-color;
+      box-shadow: 0 0 0 1px $input-focus-border-color;
     }
   }
   &__label {
@@ -211,8 +213,10 @@ export default defineComponent({
 
   &.invalid.has-text {
     .base-input__input {
-      margin-top: -1px;
       border-color: $error-color;
+      -webkit-box-shadow: 0 0 0 1px $error-color;
+      -moz-box-shadow: 0 0 0 1px $error-color;
+      box-shadow: 0 0 0 1px $error-color;
       outline: 0;
     }
 

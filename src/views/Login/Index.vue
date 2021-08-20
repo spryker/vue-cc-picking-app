@@ -10,7 +10,7 @@
       label="Operator ID"
       v-model="user.username"
       class="mb-3"
-      :valid="false"
+      :valid="user.password !== '123'"
     />
     <BaseInput
       id="password"
@@ -18,10 +18,11 @@
       v-model="user.password"
       type="password"
       class="mb-3"
+      :valid="user.password !== '123'"
     />
 
     <BaseError
-      v-if="user.username || user.password"
+      v-if="(user.username || user.password) && user.password === '123'"
       :error-message="errorMessage"
     />
 
