@@ -10,7 +10,11 @@
         <img class="mr-1" src="@/assets/icons/cart.svg" alt="" />
         <span>{{ card.number_of_items }} Items</span>
       </div>
-      <div v-if="card.cartNote" class="d-flex-center"><InfoIcon /></div>
+      <div v-if="card.cartNote" class="d-flex-center">
+        <router-link class="d-flex-center" to="/overview">
+          <InfoIcon />
+        </router-link>
+      </div>
     </div>
     <hr />
     <BaseProductBox :products="card.products" />

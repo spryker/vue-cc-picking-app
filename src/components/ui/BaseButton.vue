@@ -4,6 +4,7 @@
       'primary-btn-outline': btnOutline,
       'primary-btn': !btnOutline,
       'primary-btn__active': active,
+      'primary-btn_text': text,
     }"
     :disabled="disabled"
   >
@@ -26,6 +27,10 @@ export default defineComponent({
       default: false,
     },
     active: {
+      type: Boolean,
+      default: false,
+    },
+    text: {
       type: Boolean,
       default: false,
     },
@@ -74,12 +79,10 @@ export default defineComponent({
 
   &:hover {
     background: darken($primary-btn-bg, 10);
-    transform: scale(1.03);
   }
 
   &:active {
     background: darken($primary-btn-bg, 10);
-    transform: scale(0.98);
   }
 }
 
@@ -96,13 +99,11 @@ export default defineComponent({
 
   &:hover {
     background: $primary-btn-bg;
-    transform: scale(1.03);
     color: #fff;
   }
 
   &:active {
     background: $primary-btn-bg;
-    transform: scale(0.98);
     color: #fff;
   }
 
@@ -110,5 +111,9 @@ export default defineComponent({
     background: $primary-btn-bg;
     color: #fff;
   }
+}
+.primary-btn_text {
+  background: none;
+  border: none;
 }
 </style>
