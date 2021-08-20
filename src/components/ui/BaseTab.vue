@@ -4,7 +4,7 @@
       class="tab__link"
       v-for="link in linkList"
       :key="link.linkTo"
-      :to="link.linkTo"
+      :to="{ name: link.linkTo }"
       :class="{
         tab__active: link.linkTo === currentRoute,
       }"
