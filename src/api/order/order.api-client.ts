@@ -1,9 +1,8 @@
 /* eslint-disable no-useless-constructor */
 
 import { mockOrders } from "./order-mocks";
-import { OrderStatus } from "../order-status";
-import { Order, OrderStatusUpdate, OrderError } from "./order";
-import { ref, reactive } from "vue";
+import { Order } from "./order";
+import { reactive } from "vue";
 
 export class OrderApiClient {
   getOrders(): Order[] {

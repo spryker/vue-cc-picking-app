@@ -1,24 +1,16 @@
 <template>
   <div class="default-layout">
-    <BaseHeader />
     <div id="root-wrapper">
       <router-view />
     </div>
-    <BaseFooter />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import BaseHeader from "@/components/layouts/BaseHeader.vue";
-import BaseFooter from "@/components/layouts/BaseFooter.vue";
 
 export default defineComponent({
   name: "DefaultLayout",
-  components: {
-    BaseHeader,
-    BaseFooter,
-  },
 });
 </script>
 
