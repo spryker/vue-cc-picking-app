@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, reactive, computed } from "vue";
+import { defineComponent, ref, reactive, computed, watch } from "vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
 import BasePopup from "@/components/ui/BasePopup";
 import BaseCheckbox from "@/components/ui/BaseCheckbox";
@@ -76,7 +76,7 @@ export default defineComponent({
     BasePopup,
     BaseButton,
   },
-  setup: function (props) {
+  setup: function (props, { emit }) {
     const visibleFilter = ref(false);
     const productTypesList = reactive(productTypes);
     const productTypesCount = computed(() => {
@@ -84,6 +84,7 @@ export default defineComponent({
         return !product.active;
       }).length;
     });
+    const listItem = ref([]);
 
     const sortedlist = map(sortTypes, (type, key) => {
       return {
@@ -99,6 +100,16 @@ export default defineComponent({
     const toggleShowFilter = () => {
       visibleFilter.value = !visibleFilter.value;
     };
+
+    watch(productTypesCount, (newValue, oldValue) => {
+      listItem.value = [];
+      productTypesList.forEach((product) => {
+        if (!product.active) {
+          listItem.value.push(product.name);
+        }
+      });
+      emit("changeFilter", listItem.value);
+    });
 
     return {
       props,

@@ -17,7 +17,7 @@
       </div>
     </div>
     <hr />
-    <BaseProductBox :products="card.products" />
+    <BaseProductBox :products="card.products" :disabledItem="disabledItem" />
     <div>
       <BaseButton :btnOutline="true"> Start Picking </BaseButton>
     </div>
@@ -40,6 +40,7 @@ export default defineComponent({
         return {};
       },
     },
+    disabledItem: Array,
   },
   components: {
     BaseButton,

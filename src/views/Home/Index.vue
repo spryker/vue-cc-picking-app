@@ -4,10 +4,16 @@
     v-model="search"
     placeholderTitle="Order ID or Pickup Code"
   />
+
   <div v-if="OrderList.length" class="list">
-    <BaseCard v-for="(orderCard, i) in OrderList" :key="i" :card="orderCard" />
+    <BaseCard
+      v-for="(orderCard, i) in OrderList"
+      :key="i"
+      :card="orderCard"
+      :disabledItem="disabledItem"
+    />
   </div>
-  <BaseFilter />
+  <BaseFilter @changeFilter="changeFilter" />
 </template>
 
 <script lang="ts">
@@ -26,12 +32,19 @@ export default defineComponent({
   },
   setup() {
     const search = ref("");
+    const disabledItem = ref([]);
     const OrderApi: OrderApiClient = new OrderApiClient();
     const OrderList: Order[] = OrderApi.getOrders();
+
+    const changeFilter = (item: []) => {
+      disabledItem.value = item;
+    };
 
     return {
       OrderList,
       search,
+      changeFilter,
+      disabledItem,
     };
   },
 });
