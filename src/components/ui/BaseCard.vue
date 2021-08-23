@@ -12,7 +12,9 @@
       </div>
       <div v-if="card.cartNote" class="d-flex-center">
         <router-link class="d-flex-center" to="/overview">
-          <InfoIcon />
+          <BaseIcon viewBox="0 0 20 21">
+            <InfoIcon />
+          </BaseIcon>
         </router-link>
       </div>
     </div>
@@ -30,7 +32,9 @@ import { Order } from "@/api";
 import { formatDate } from "@/helpers/DateFormatter";
 import BaseProductBox from "@/components/ui/BaseProductBox.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
+import BaseIcon from "@/components/icons/BaseIcon.vue";
 import InfoIcon from "@/components/icons/InfoIcon.vue";
+
 import { useRouter } from "vue-router";
 
 export default defineComponent({
@@ -47,6 +51,7 @@ export default defineComponent({
     BaseButton,
     BaseProductBox,
     InfoIcon,
+    BaseIcon,
   },
   setup(props) {
     const formattedTime = computed(() => {
